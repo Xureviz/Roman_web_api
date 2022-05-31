@@ -4,5 +4,7 @@ __pycache__/
 venv/
 .vscode/
 .idea
+static/
 *.db
 *.db-journal
+docker/db/pgdata/
