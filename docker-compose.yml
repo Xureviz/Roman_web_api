@@ -1,13 +1,22 @@
-version: '3.9'
-
+version: "3.9"
 services:
-  app:
+  web:
     build: .
-    volumes: 
-      - ./app:/romano_web_api/app
-    ports: 
-      - 5000:5000
-    environment: 
-      PORT: 5000
-      FLASK_ENV: development
-      PYTHONPATH: /romano_web_api/app
+    volumes:
+      - .:/usr/src/app
+    ports:
+      - 8000:8000
+    environment:
+      ENV: development
+    depends_on:
+      - db
+
+  db:
+    image: postgres:12
+    ports:
+      - 5432:5432
+    volumes:
+      - ./docker/db/pgdata:/var/lib/postgresql/data
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres

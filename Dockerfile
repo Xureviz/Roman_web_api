@@ -1,20 +1,15 @@
 FROM python:3.8-slim-buster
 
-WORKDIR /romano_web_api/app
+ENV PYHTONDONTWRITEBYTECODE 1
+ENV PYTHONUNBUFFERED 1
 
-RUN apt-get update && \
-  apt-get install -y \
-  git
+RUN apt-get update && apt-get install --yes libmagic-dev
 
-RUN pip install \
-  pylint \
-  pylint-flask \
-  pytest \
-  pytest-cov
+RUN mkdir -p /usr/src/app
+WORKDIR /usr/src/app
+ADD config/requirements.txt ./src/config/requirements.txt
+RUN  python -m pip install -U pip && pip install -r src/config/requirements.txt
+COPY . /usr/src/app
 
-COPY requirements.txt requirements.txt
-RUN pip install -r requirements.txt
 
-COPY app/ .
-
-CMD ["python", "app.py"]
+ENTRYPOINT ["sh", "docker-entrypoint.sh"]
