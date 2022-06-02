@@ -1,4 +1,4 @@
-from api.helpers.roman_number_utils import calculate_roman_number, word
+from api.helpers.roman_number_utils import word
 
 
 def biggest_number(roman_numbers):
