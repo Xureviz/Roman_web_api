@@ -22,6 +22,7 @@ def calculate_roman_number(roman_numbers):
 
     roman_dict = {
         "I": 1,
+        "IV": 4,
         "V": 5,
         "IX": 9,
         "X": 10,
@@ -42,10 +43,16 @@ def calculate_roman_number(roman_numbers):
             if i + 1 < len(roman_numbers) and roman_numbers[i + 1] in roman_dict.keys():
                 if roman_numbers[i: i + 2] in roman_dict:
                     value = roman_dict[roman_numbers[i: i + 2]]
-                    roman_number_values.append({"number": roman_numbers[i: i + 2], "value": value})
+                    roman_number_values.append(
+                        {"number": roman_numbers[i: i + 2], "value": value}
+                    )
+                    i += 2
                     continue
                 value += roman_dict[roman_numbers[i + 1]]
-                roman_number_values.append({"number": roman_numbers[i: i + 2], "value": value})
+                roman_number_values.append(
+                    {"number": roman_numbers[i: i + 2], "value": value}
+                )
+                i += 1
                 continue
             if i == len(roman_numbers) - 1:
                 roman_number_values.append({"number": roman_numbers[i], "value": value})
@@ -53,4 +60,3 @@ def calculate_roman_number(roman_numbers):
             continue
 
     return roman_number_values
-
