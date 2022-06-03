@@ -42,12 +42,17 @@ def calculate_roman_number(roman_numbers):
     while i < len(roman_numbers):
         try:
             value = roman_dict[roman_numbers[i]]
-            if i + 1 < len(roman_numbers) and roman_numbers[
-                i + 1] in roman_dict.keys():  # verifica se o proximo numero é romando
-                if roman_numbers[i: i + 2] in roman_dict:  # verifica se os dois juntos constam na tabela
-                    value = roman_dict[roman_numbers[i: i + 2]]
+            if (
+                i + 1 < len(roman_numbers) and roman_numbers[i + 1] in roman_dict.keys()
+            ):  # verifica se o proximo numero é romando
+                if (
+                    roman_numbers[i : i + 2] in roman_dict
+                ):  # verifica se os dois juntos constam na tabela
+                    value = roman_dict[roman_numbers[i : i + 2]]
                     total += value
-                    roman_number_values.append({"number": roman_numbers[i:i + 2], "value": total})  # adiciona na lista
+                    roman_number_values.append(
+                        {"number": roman_numbers[i : i + 2], "value": total}
+                    )  # adiciona na lista
                     i += 2
                     continue
                 total += value
