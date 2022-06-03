@@ -53,9 +53,7 @@ def calculate_roman_number(roman_numbers):
                 total += value
                 i += 1
                 continue
-            print(value, total, i)
             total += value
-            print(value, total, i)
             roman_number_values.append({"number": roman_numbers[i], "value": total})
             i += 1
             continue

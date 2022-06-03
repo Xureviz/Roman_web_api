@@ -1,6 +1,5 @@
-# Docker file needs to be updated yet
-
 # Application introduction
+This program receives a String type and returns the highest roman number found on that String
 
 # Build project with docker
 docker-compose build
