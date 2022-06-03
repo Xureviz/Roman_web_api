@@ -50,8 +50,9 @@ def calculate_roman_number(roman_numbers):
                     roman_number_values.append({"number": roman_numbers[i:i + 2], "value": total})  # adiciona na lista
                     i += 2
                     continue
-                total += value  # total = 10
+                total += value
                 i += 1
+                continue
             print(value, total, i)
             total += value
             print(value, total, i)
@@ -61,4 +62,5 @@ def calculate_roman_number(roman_numbers):
         except (KeyError, IndexError):
             total = 0
             i += 1
+
     return roman_number_values
