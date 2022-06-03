@@ -22,6 +22,7 @@ def calculate_roman_number(roman_numbers):
 
     roman_dict = {
         "I": 1,
+        "IV": 4,
         "V": 5,
         "IX": 9,
         "X": 10,
@@ -36,21 +37,30 @@ def calculate_roman_number(roman_numbers):
     }
 
     roman_number_values = []
-    for i in range(len(roman_numbers)):
+    i = 0
+    total = 0
+    while i < len(roman_numbers):
         try:
             value = roman_dict[roman_numbers[i]]
-            if i + 1 < len(roman_numbers) and roman_numbers[i + 1] in roman_dict.keys():
-                if roman_numbers[i: i + 2] in roman_dict:
+            if i + 1 < len(roman_numbers) and roman_numbers[
+                i + 1] in roman_dict.keys():  # verifica se o proximo numero é romando
+                if roman_numbers[i: i + 2] in roman_dict:  # verifica se os dois juntos constam na tabela
                     value = roman_dict[roman_numbers[i: i + 2]]
-                    roman_number_values.append({"number": roman_numbers[i: i + 2], "value": value})
+                    total += value
+                    roman_number_values.append({"number": roman_numbers[i:i + 2], "value": total})  # adiciona na lista
+                    i += 2
                     continue
-                value += roman_dict[roman_numbers[i + 1]]
-                roman_number_values.append({"number": roman_numbers[i: i + 2], "value": value})
+                total += value
+                i += 1
                 continue
-            if i == len(roman_numbers) - 1:
-                roman_number_values.append({"number": roman_numbers[i], "value": value})
-        except KeyError:
+            print(value, total, i)
+            total += value
+            print(value, total, i)
+            roman_number_values.append({"number": roman_numbers[i], "value": total})
+            i += 1
             continue
+        except (KeyError, IndexError):
+            total = 0
+            i += 1
 
     return roman_number_values
-

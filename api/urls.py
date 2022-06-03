@@ -2,6 +2,4 @@ from django.urls import path
 from . import views
 
 
-urlpatterns = [
-    path('', views.biggest_roman_number)
-]
+urlpatterns = [path("", views.biggest_roman_number)]
