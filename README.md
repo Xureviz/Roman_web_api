@@ -6,15 +6,14 @@ docker-compose build
 
 docker-compose up
 
-# Access docker bash
+## Postman
+After building the project, let's try consuming it via Postman. <br><br>
+Send a form-data to localhost:8000/search/ <br><br>
+The API is waiting for a key "text". Now type a random String and send it with Method
+
+# Access docker bash if needed
 
 docker-compose run --rm app /bin/sh
-
-# Pylint and test
-
-docker-compose run --rm app pylint --load-plugins pylint_flask /romano_web_api/app
-
-docker-compose run --rm app pytest -vvv --cov=.
 
 # Remove docker containers
 
